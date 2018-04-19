@@ -1,7 +1,7 @@
 create database dbSisOS;
 use dbSisOS;
 create table users (
-id_user int primary key, username varchar(50) not null,
+user_id int primary key auto_increment, username varchar(50) not null,
 phone varchar(15), login varchar(15) not null unique,
 password varchar(15) not null
 );
