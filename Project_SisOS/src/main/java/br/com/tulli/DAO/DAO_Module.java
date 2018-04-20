@@ -7,10 +7,10 @@ public class DAO_Module {
 
     public static Connection connector() {
         Connection connection = null;
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/dbsisos";
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/dbsisos?useTimezone=true&serverTimezone=UTC";
         String user = "root";
-        String password = "";
+        String password = "root";
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, user, password);
