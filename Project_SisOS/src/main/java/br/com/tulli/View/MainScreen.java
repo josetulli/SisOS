@@ -5,17 +5,19 @@
  */
 package br.com.tulli.View;
 
-/**
- *
- * @author ze
- */
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 public class MainScreen extends javax.swing.JFrame {
+
+    private final String sysName = "SysSO - System for Service Order Control";
 
     /**
      * Creates new form Main
      */
     public MainScreen() {
         initComponents();
+        configMainWindow();
     }
 
     /**
@@ -27,26 +29,158 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLblUser = new javax.swing.JLabel();
+        jLblDate = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuClient = new javax.swing.JMenuItem();
+        jMenuSO = new javax.swing.JMenuItem();
+        jMenuUsers = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuServices = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuQuit = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuAbout = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(640, 480));
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
+        );
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/google-logo.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(300, 300));
+
+        jLblUser.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLblUser.setText("Username");
+
+        jLblDate.setText("jLabel2");
+
+        jMenu1.setText("Register");
+
+        jMenuClient.setText("Client");
+        jMenuClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuClientActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuClient);
+
+        jMenuSO.setText("Service Order");
+        jMenu1.add(jMenuSO);
+
+        jMenuUsers.setText("Users");
+        jMenu1.add(jMenuUsers);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Report");
+
+        jMenuServices.setText("Services");
+        jMenu2.add(jMenuServices);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Options");
+
+        jMenuQuit.setText("Quit");
+        jMenuQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuQuitActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuQuit);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Help");
+
+        jMenuAbout.setText("About...");
+        jMenuAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAboutActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuAbout);
+
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLblUser)
+                            .addComponent(jLblDate))
+                        .addGap(0, 116, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLblUser)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLblDate)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(916, 540));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void jMenuQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuQuitActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuQuitActionPerformed
+
+    private void jMenuClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuClientActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Calendar calendar = Calendar.getInstance();
+        jLblDate.setText("Logged since: " + calendar.getTime());
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAboutActionPerformed
+        About about = new About();
+        about.setVisible(true);
+    }//GEN-LAST:event_jMenuAboutActionPerformed
+
+    private void configMainWindow() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -70,15 +204,24 @@ public class MainScreen extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainScreen().setVisible(true);
-            }
-        });
+        this.setTitle(sysName);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLblDate;
+    private javax.swing.JLabel jLblUser;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuItem jMenuAbout;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuClient;
+    private javax.swing.JMenuItem jMenuQuit;
+    private javax.swing.JMenuItem jMenuSO;
+    private javax.swing.JMenuItem jMenuServices;
+    private javax.swing.JMenuItem jMenuUsers;
     // End of variables declaration//GEN-END:variables
 }

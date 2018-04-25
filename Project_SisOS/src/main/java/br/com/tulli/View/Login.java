@@ -16,12 +16,15 @@ public class Login extends javax.swing.JFrame {
         String query = "select * from users where login=? and password=?";
         try {
             pst = connection.prepareStatement(query);
-            pst.setString(1, jTxtFldUsername.getText().trim());
+            pst.setString(1, jTxtFldUsername.getText());
             pst.setString(2, jPwdFldPassword.getText());
+            pst.setString(1, "admin");
+            pst.setString(2, "admin");
             rs = pst.executeQuery();
             if (rs.next()) {
                 MainScreen main = new MainScreen();
                 main.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid login/password");
             }

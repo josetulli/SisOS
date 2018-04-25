@@ -12,3 +12,4 @@ insert into users values (3, 'Bill Gates', '9999-8888', 'bgates', '123456');
 select * from users;
 update users set phone='8888-7777' where id_user=3;
 delete from users where id_user=3;
+alter table users add column profile varchar(20) not null;
