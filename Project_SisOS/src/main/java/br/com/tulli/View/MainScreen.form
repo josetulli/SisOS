@@ -25,6 +25,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuUsers">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Users"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -32,6 +33,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Report"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuServices">

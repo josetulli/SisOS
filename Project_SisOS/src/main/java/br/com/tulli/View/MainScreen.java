@@ -88,11 +88,13 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu1.add(jMenuSO);
 
         jMenuUsers.setText("Users");
+        jMenuUsers.setEnabled(false);
         jMenu1.add(jMenuUsers);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Report");
+        jMenu2.setEnabled(false);
 
         jMenuServices.setText("Services");
         jMenu2.add(jMenuServices);
@@ -177,6 +179,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAboutActionPerformed
         About about = new About();
+        jDesktopPane1.add(about);
         about.setVisible(true);
     }//GEN-LAST:event_jMenuAboutActionPerformed
 
