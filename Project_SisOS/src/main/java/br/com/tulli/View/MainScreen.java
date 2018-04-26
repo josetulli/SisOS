@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 
 public class MainScreen extends javax.swing.JFrame {
 
-    private final String sysName = "SysSO - System for Service Order Control";
+    public static final String sysName = "SysSO - System for Service Order Control";
+    public static final String version = "1.0.0";
+    public static final String author = "JM.Tulli";
 
     /**
      * Creates new form Main
@@ -66,7 +68,8 @@ public class MainScreen extends javax.swing.JFrame {
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/google-logo.png"))); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logo8.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(300, 300));
 
         jLblUser.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -135,13 +138,10 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblUser)
-                            .addComponent(jLblDate))
-                        .addGap(0, 116, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLblUser)
+                    .addComponent(jLblDate)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,9 +178,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAboutActionPerformed
-        About about = new About();
-        jDesktopPane1.add(about);
-        about.setVisible(true);
+        new About(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuAboutActionPerformed
 
     private void configMainWindow() {
