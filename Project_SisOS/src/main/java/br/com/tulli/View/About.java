@@ -10,10 +10,7 @@ public class About extends javax.swing.JDialog {
     public About(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle(MainScreen.sysName);
-        jLabel6.setText(MainScreen.version);
-        jLabel7.setText(MainScreen.author);
-        Window.centerWindow(this);
+        configureWindow();
     }
 
     /**
@@ -27,8 +24,8 @@ public class About extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLblVersion = new javax.swing.JLabel();
+        jLblAuthor = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -42,11 +39,11 @@ public class About extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("System for Service Orders");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setText("Version:");
+        jLblVersion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblVersion.setText("Version:");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Coded by:");
+        jLblAuthor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLblAuthor.setText("Coded by:");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel5.setText("Designed for educational purposes only");
@@ -60,11 +57,11 @@ public class About extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(jLblVersion)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jLblAuthor)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7))
                     .addComponent(jLabel5))
@@ -77,11 +74,11 @@ public class About extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLblVersion)
                     .addComponent(jLabel6))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(jLblAuthor)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
@@ -130,6 +127,13 @@ public class About extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void configureWindow() {
+        this.setTitle(MainScreen.SYS_NAME);
+        jLblVersion.setText(MainScreen.VERSION);
+        jLblAuthor.setText(MainScreen.AUTHOR);
+        Window.centerWindow(this);
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -138,11 +142,11 @@ public class About extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLblAuthor;
+    private javax.swing.JLabel jLblVersion;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

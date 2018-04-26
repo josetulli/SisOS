@@ -1,6 +1,7 @@
 package br.com.tulli.View;
 
 import br.com.tulli.DAO.DAO_Module;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,20 +9,79 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    Connection connection = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    //DB connection
+    private Connection connection = null;
+    private PreparedStatement pst = null;
+    private ResultSet rs = null;
+    //Stores username and profile
+    public static String[] loggedUser = {null, null};
 
+    /**
+     * Creates new form Login
+     */
+    public Login() {
+        initComponents();
+        setConnectionStateIcon();
+    }
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
+
+    private void setConnectionStateIcon() {
+        connection = DAO_Module.connector();
+        if (connection != null) {
+            jLblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/db_ok.png")));
+        } else {
+            jLblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/db_nok.png")));
+        }
+    }
+
+    /**
+     * Check if valid username and password
+     */
     public void checkLogin() {
         String query = "select * from users where login=? and password=?";
         try {
             pst = connection.prepareStatement(query);
             pst.setString(1, jTxtFldUsername.getText());
             pst.setString(2, jPwdFldPassword.getText());
-            pst.setString(1, "admin");
-            pst.setString(2, "admin");
+//            pst.setString(1, "admin");  // to speed up the tests
+//            pst.setString(2, "admin");
             rs = pst.executeQuery();
             if (rs.next()) {
+                //get username
+                loggedUser[0] = rs.getString(2);
+                //get user profile
+                loggedUser[1] = rs.getString(6);
                 MainScreen main = new MainScreen();
                 main.setVisible(true);
                 this.dispose();
@@ -30,19 +90,6 @@ public class Login extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }
-    }
-
-    /**
-     * Creates new form Login
-     */
-    public Login() {
-        initComponents();
-        connection = DAO_Module.connector();
-        if (connection != null) {
-            jLblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/db_ok.png")));
-        } else {
-            jLblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/db_nok.png")));
         }
     }
 
@@ -78,11 +125,22 @@ public class Login extends javax.swing.JFrame {
                 jTxtFldUsernameActionPerformed(evt);
             }
         });
+        jTxtFldUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTxtFldUsernameKeyPressed(evt);
+            }
+        });
 
         jBtnLog.setText("Login");
         jBtnLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnLogActionPerformed(evt);
+            }
+        });
+
+        jPwdFldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPwdFldPasswordKeyPressed(evt);
             }
         });
 
@@ -139,40 +197,19 @@ public class Login extends javax.swing.JFrame {
         checkLogin();
     }//GEN-LAST:event_jBtnLogActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jPwdFldPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPwdFldPasswordKeyPressed
+        //Login when Enter key is pressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jBtnLog.doClick();
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jPwdFldPasswordKeyPressed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+    private void jTxtFldUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtFldUsernameKeyPressed
+        //Login when Enter key is pressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jBtnLog.doClick();
+        }
+    }//GEN-LAST:event_jTxtFldUsernameKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnLog;

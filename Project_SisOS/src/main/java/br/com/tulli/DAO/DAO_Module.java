@@ -8,7 +8,7 @@ public class DAO_Module {
     public static Connection connector() {
         Connection connection = null;
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/dbsisos?useTimezone=true&serverTimezone=UTC";
+        String url = "jdbc:mysql://localhost:3306/dbsisos?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String user = "root";
         String password = "root";
         try {

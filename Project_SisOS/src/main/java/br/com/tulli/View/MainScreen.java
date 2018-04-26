@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.tulli.View;
 
 import java.util.Calendar;
@@ -10,16 +5,48 @@ import javax.swing.JOptionPane;
 
 public class MainScreen extends javax.swing.JFrame {
 
-    public static final String sysName = "SysSO - System for Service Order Control";
-    public static final String version = "1.0.0";
-    public static final String author = "JM.Tulli";
+    public static final String SYS_NAME = "SysSO - System for Service Order Control";
+    public static final String VERSION = "1.0.0";
+    public static final String AUTHOR = "JM.Tulli";
 
     /**
-     * Creates new form Main
+     * Creates new form MainScreen
      */
     public MainScreen() {
         initComponents();
         configMainWindow();
+    }
+
+    private void configMainWindow() {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        this.setTitle(SYS_NAME);
+        //Show the name of logged user
+        jLblUser.setText(Login.loggedUser[0]);
+        //Enable or disable the menu according to user permission
+        jMenuReport.setEnabled(Login.loggedUser[1].equals("admin"));
+        jMenuUsers.setEnabled(Login.loggedUser[1].equals("admin"));
     }
 
     /**
@@ -40,9 +67,10 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuClient = new javax.swing.JMenuItem();
         jMenuSO = new javax.swing.JMenuItem();
         jMenuUsers = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuReport = new javax.swing.JMenu();
         jMenuServices = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuLogout = new javax.swing.JMenuItem();
         jMenuQuit = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuAbout = new javax.swing.JMenuItem();
@@ -91,20 +119,26 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu1.add(jMenuSO);
 
         jMenuUsers.setText("Users");
-        jMenuUsers.setEnabled(false);
         jMenu1.add(jMenuUsers);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Report");
-        jMenu2.setEnabled(false);
+        jMenuReport.setText("Report");
 
         jMenuServices.setText("Services");
-        jMenu2.add(jMenuServices);
+        jMenuReport.add(jMenuServices);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuReport);
 
         jMenu3.setText("Options");
+
+        jMenuLogout.setText("Logout");
+        jMenuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLogoutActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuLogout);
 
         jMenuQuit.setText("Quit");
         jMenuQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +208,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Calendar calendar = Calendar.getInstance();
+        //Show the time user logged into the system
         jLblDate.setText("Logged since: " + calendar.getTime());
     }//GEN-LAST:event_formWindowActivated
 
@@ -181,32 +216,14 @@ public class MainScreen extends javax.swing.JFrame {
         new About(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuAboutActionPerformed
 
-    private void configMainWindow() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLogoutActionPerformed
+        //Logout current user and open window to login with different user
+        if (JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
         }
-        //</editor-fold>
-        //</editor-fold>
-        this.setTitle(sysName);
-    }
+    }//GEN-LAST:event_jMenuLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -214,13 +231,14 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLblDate;
     private javax.swing.JLabel jLblUser;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuAbout;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuClient;
+    private javax.swing.JMenuItem jMenuLogout;
     private javax.swing.JMenuItem jMenuQuit;
+    private javax.swing.JMenu jMenuReport;
     private javax.swing.JMenuItem jMenuSO;
     private javax.swing.JMenuItem jMenuServices;
     private javax.swing.JMenuItem jMenuUsers;

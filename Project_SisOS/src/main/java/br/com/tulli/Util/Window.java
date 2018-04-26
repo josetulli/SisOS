@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 
 public class Window {
 
+    //Used to center the JDialog window
     public static void centerWindow(JDialog dialog) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();

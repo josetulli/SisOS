@@ -25,15 +25,13 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuUsers">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Users"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMenuReport">
           <Properties>
             <Property name="text" type="java.lang.String" value="Report"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuServices">
@@ -48,6 +46,14 @@
             <Property name="text" type="java.lang.String" value="Options"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuLogout">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Logout"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuLogoutActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuQuit">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quit"/>

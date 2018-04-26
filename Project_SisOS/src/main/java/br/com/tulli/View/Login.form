@@ -95,6 +95,7 @@
     <Component class="javax.swing.JTextField" name="jTxtFldUsername">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtFldUsernameActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTxtFldUsernameKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnLog">
@@ -106,6 +107,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPwdFldPassword">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPwdFldPasswordKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblStatus">
       <Properties>
